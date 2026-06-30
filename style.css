@@ -122,8 +122,9 @@ nav a:hover {
     text-align: center;
     padding: 20px;
     
+    /* Poprawiona ścieżka do pliku bg.jpg */
     background: linear-gradient(rgba(15, 31, 26, 0.8), rgba(28, 53, 45, 0.7)), 
-                url('Black Modern Barber Shop Business Card.jpg');
+                url('bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
