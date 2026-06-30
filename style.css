@@ -16,7 +16,7 @@ body {
     font-family: 'Playfair Display', Georgia, serif; 
     background-color: #fcfbfa;
     color: #2c2c2c;
-    overflow-x: hidden; /* Zapobiega pojawianiu się paska na dole */
+    overflow-x: hidden; 
 }
 
 /* Własny, luksusowy pasek przewijania */
@@ -60,13 +60,10 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    
-    /* Magia Glassmorphism */
     background: rgba(28, 53, 45, 0.85); 
-    backdrop-filter: blur(12px); /* Rozmywa to, co jest pod menu */
+    backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -99,19 +96,19 @@ nav a {
     letter-spacing: 2px;
     font-weight: bold;
     padding: 10px 20px;
-    border-radius: 30px; /* Styl "Pill" */
+    border-radius: 30px; 
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
 }
 
 nav a:hover {
     background-color: #dfb76c; 
     color: #1c352d; 
-    box-shadow: 0 0 15px rgba(223, 183, 108, 0.6); /* Delikatne świecenie */
+    box-shadow: 0 0 15px rgba(223, 183, 108, 0.6); 
     transform: translateY(-2px); 
 }
 
 /* =========================================
-   SEKCJA HERO (Z GRADIENTOWYM TEKSTEM)
+   SEKCJA HERO (BEZ FIXED DLA TABLETÓW)
    ========================================= */
 .hero {
     min-height: 100vh; 
@@ -121,16 +118,13 @@ nav a:hover {
     align-items: center; 
     text-align: center;
     padding: 20px;
-    
-    /* Poprawiona ścieżka do pliku bg.jpg */
     background: linear-gradient(rgba(15, 31, 26, 0.8), rgba(28, 53, 45, 0.7)), 
                 url('bg.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    /* Usunięto fixed, żeby tło działało na tabletach i telefonach Apple */
 }
 
-/* Gradient na tekście */
 .hero h1 { 
     font-size: 64px; 
     margin-bottom: 20px; 
@@ -173,7 +167,7 @@ nav a:hover {
 }
 
 /* =========================================
-   OPIS "O NAS" (LUKSUSOWY GRID)
+   OPIS "O NAS"
    ========================================= */
 .about-extended {
     min-height: 100vh; 
@@ -201,7 +195,6 @@ nav a:hover {
     margin-bottom: 30px; 
     position: relative;
 }
-/* Dekoracyjna linia pod tytułem */
 .about-text h2::after {
     content: '';
     position: absolute;
@@ -215,7 +208,6 @@ nav a:hover {
 .about-text p { font-size: 18px; line-height: 1.9; color: #555; }
 
 .about-image { flex: 1; position: relative; }
-/* Efekt podwójnej ramki dla zdjęcia */
 .about-image::before {
     content: '';
     position: absolute;
@@ -239,7 +231,7 @@ nav a:hover {
 .about-image img:hover { transform: scale(1.03) rotate(1deg); }
 
 /* =========================================
-   CENNIK (EFEKT LEWITUJĄCEJ KARTY)
+   CENNIK
    ========================================= */
 .services-section {
     min-height: 100vh; 
@@ -274,7 +266,7 @@ nav a:hover {
     background-color: #ffffff; 
     box-shadow: 0 10px 25px rgba(28, 53, 45, 0.1);
     transform: translateX(15px) scale(1.01); 
-    border-left: 4px solid #dfb76c; /* Akcent przy najechaniu */
+    border-left: 4px solid #dfb76c; 
 }
 
 .service-item::after {
@@ -284,12 +276,12 @@ nav a:hover {
 .price { font-weight: 800; color: #dfb76c; order: 2; font-size: 20px;}
 
 /* =========================================
-   KONTAKT (MROCZNA ELEGANCJA)
+   KONTAKT
    ========================================= */
 .contact-section {
     min-height: 100vh; display: flex; flex-direction: column;
     justify-content: center; align-items: center; 
-    background-color: #142721; /* Jeszcze głębsza zieleń */
+    background-color: #142721; 
     color: white; padding: 80px 40px;
 }
 
@@ -305,7 +297,6 @@ nav a:hover {
 .contact-info h3 { color: #dfb76c; margin-bottom: 20px; font-size: 28px; letter-spacing: 1px;}
 .contact-info p { margin-bottom: 12px; color: #b8b8b8; font-size: 17px; }
 
-/* Stylowanie mapy */
 iframe {
     border-radius: 16px !important;
     box-shadow: 0 15px 30px rgba(0,0,0,0.4) !important;
@@ -315,7 +306,7 @@ iframe:hover { transform: scale(1.02); }
 
 .contact-form {
     flex: 1; display: flex; flex-direction: column; justify-content: center;
-    background: rgba(255, 255, 255, 0.03); /* Leciutkie tło formy */
+    background: rgba(255, 255, 255, 0.03); 
     backdrop-filter: blur(10px);
     padding: 40px; border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -351,7 +342,6 @@ iframe:hover { transform: scale(1.02); }
     box-shadow: 0 15px 25px rgba(223, 183, 108, 0.4); 
 }
 
-/* 
-   Author: Gracjan Pajor
+/* Author: Gracjan Pajor
    Copyright (c) 2026. All rights reserved.
 */
