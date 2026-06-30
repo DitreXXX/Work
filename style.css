@@ -9,7 +9,7 @@
 
 html {
     scroll-behavior: smooth; 
-    scroll-padding-top: 80px; 
+    scroll-padding-top: 140px; /* Zwiększono, bo nowe menu jest wyższe */
 }
 
 body {
@@ -17,6 +17,12 @@ body {
     background-color: #fcfbfa;
     color: #2c2c2c;
     overflow-x: hidden; 
+}
+
+/* Wymuszenie koloru telefonu na szary/zgodny z resztą tekstu na Apple */
+a[href^="tel"] {
+    color: inherit;
+    text-decoration: none;
 }
 
 ::-webkit-scrollbar { width: 10px; }
@@ -36,13 +42,15 @@ body {
 }
 
 /* =========================================
-   GLASSMORPHISM MENU (SZRONIONE SZKŁO)
+   NOWY HEADER (Logo na środku + Kafelki)
    ========================================= */
 header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Ustawia logo nad menu */
+    justify-content: center;
     align-items: center;
-    padding: 20px 50px;
+    padding: 20px;
+    gap: 20px;
     background: rgba(28, 53, 45, 0.95); 
     backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
@@ -54,18 +62,20 @@ header {
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
     color: #dfb76c;
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    white-space: nowrap;
+    text-align: center;
 }
 
 nav {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* Pozwala na zawijanie kafli na mniejszych ekranach */
     gap: 15px; 
+    width: 100%;
 }
 
 nav a {
@@ -75,9 +85,14 @@ nav a {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 30px; 
+    padding: 12px 25px;
+    
+    /* Styl Kafelków */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(223, 183, 108, 0.4);
+    border-radius: 8px; /* Kwadratowe rogi dla kafli */
     transition: all 0.4s ease; 
+    text-align: center;
 }
 
 nav a:hover {
@@ -88,7 +103,7 @@ nav a:hover {
 }
 
 /* =========================================
-   SEKCJA HERO (ZAKODOWANY URL DLA APPLE)
+   SEKCJA HERO 
    ========================================= */
 .hero {
     min-height: 100vh; 
@@ -98,14 +113,10 @@ nav a:hover {
     align-items: center; 
     text-align: center;
     padding: 40px 20px;
-    
-    /* Użyto bezpiecznego kodowania URL (%20 zamiast spacji) dla oryginalnego pliku */
     background-image: linear-gradient(rgba(15, 31, 26, 0.8), rgba(28, 53, 45, 0.7)), 
-                      url("Black%20Modern%20Barber%20Shop%20Business%20Card.jpg");
+                      url("bg.jpg");
     background-size: cover;
     background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: scroll; /* Wymuszone działanie na tabletach */
 }
 
 .hero h1 { 
@@ -173,6 +184,7 @@ nav a:hover {
     color: #1c352d; 
     margin-bottom: 30px; 
     position: relative;
+    display: inline-block;
 }
 .about-text h2::after {
     content: '';
@@ -254,17 +266,8 @@ nav a:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.service-item span:first-child {
-    text-align: left;
-    padding-right: 10px;
-}
-
-.price { 
-    font-weight: 800; 
-    color: #dfb76c; 
-    font-size: clamp(16px, 2vw, 20px);
-    white-space: nowrap;
-}
+.service-item span:first-child { text-align: left; padding-right: 10px; }
+.price { font-weight: 800; color: #dfb76c; font-size: clamp(16px, 2vw, 20px); white-space: nowrap; }
 
 /* =========================================
    KONTAKT
@@ -276,28 +279,16 @@ nav a:hover {
     text-align: center;
 }
 
-.contact-section h2 { 
-    color: #dfb76c; 
-    margin-bottom: 60px; 
-    font-size: clamp(28px, 4vw, 42px); 
-}
+.contact-section h2 { color: #dfb76c; margin-bottom: 60px; font-size: clamp(28px, 4vw, 42px); }
 
 .contact-container {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: stretch;
-    width: 100%; 
-    max-width: 1100px; 
-    margin: 0 auto;
-    gap: 50px;
+    display: flex; justify-content: space-between; align-items: stretch;
+    width: 100%; max-width: 1100px; margin: 0 auto; gap: 50px;
 }
 
 .contact-info { 
-    flex: 1; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    text-align: left;
+    flex: 1; display: flex; flex-direction: column; 
+    justify-content: center; text-align: left;
 }
 .contact-info h3 { color: #dfb76c; margin-bottom: 20px; font-size: 26px; letter-spacing: 1px;}
 .contact-info p { margin-bottom: 12px; color: #b8b8b8; font-size: 16px; line-height: 1.6; }
@@ -309,10 +300,7 @@ iframe {
 }
 
 .contact-form {
-    flex: 1; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center;
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
     background: rgba(255, 255, 255, 0.03); 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -346,17 +334,25 @@ iframe {
    ========================================= */
 
 @media (max-width: 992px) {
-    header { padding: 20px 30px; }
+    /* Wyśrodkowanie opisów na tablecie i telefonie */
+    .about-text { text-align: center; }
+    .about-text h2::after { 
+        left: 50%; 
+        transform: translateX(-50%); /* Wyśrodkowanie złotej linii pod nagłówkiem */
+    }
+    .contact-info { text-align: center; }
+    
     .about-container { flex-direction: column; gap: 40px; }
     .contact-container { flex-direction: column; gap: 40px; }
-    .contact-info { text-align: center; }
     .about-image::before { display: none; }
 }
 
 @media (max-width: 600px) {
-    header { flex-direction: column; gap: 15px; padding: 15px; }
-    nav { flex-wrap: wrap; justify-content: center; gap: 8px; }
-    nav a { font-size: 11px; padding: 8px 12px; }
+    nav a { 
+        font-size: 11px; 
+        padding: 10px 15px; 
+        flex: 1 1 40%; /* Kafelki zajmują po 40% szerokości, robiąc ładną siatkę */
+    }
     .service-item { flex-direction: column; align-items: flex-start; gap: 5px; }
     .price { align-self: flex-end; }
 }
