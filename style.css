@@ -1,0 +1,356 @@
+/* =========================================
+   RESET I NOWOCZESNY SCROLLBAR
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; 
+    scroll-padding-top: 80px; 
+}
+
+body {
+    font-family: 'Playfair Display', Georgia, serif; 
+    background-color: #fcfbfa;
+    color: #2c2c2c;
+    overflow-x: hidden; /* Zapobiega pojawianiu się paska na dole */
+}
+
+/* Własny, luksusowy pasek przewijania */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #1c352d; 
+}
+::-webkit-scrollbar-thumb {
+    background: #dfb76c; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #f3ce87; 
+}
+
+/* ANIMACJE (KEYFRAMES)  */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 10px rgba(223, 183, 108, 0.2); }
+    50% { box-shadow: 0 0 25px rgba(223, 183, 108, 0.6); }
+    100% { box-shadow: 0 0 10px rgba(223, 183, 108, 0.2); }
+}
+
+/* =========================================
+   GLASSMORPHISM MENU (SZRONIONE SZKŁO)
+   ========================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    
+    /* Magia Glassmorphism */
+    background: rgba(28, 53, 45, 0.85); 
+    backdrop-filter: blur(12px); /* Rozmywa to, co jest pod menu */
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    flex: 1; 
+    font-size: 28px;
+    font-weight: bold;
+    color: #dfb76c;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.header-spacer { flex: 1; }
+
+nav {
+    flex: 2; 
+    display: flex;
+    justify-content: center;
+    gap: 15px; 
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 30px; /* Styl "Pill" */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+}
+
+nav a:hover {
+    background-color: #dfb76c; 
+    color: #1c352d; 
+    box-shadow: 0 0 15px rgba(223, 183, 108, 0.6); /* Delikatne świecenie */
+    transform: translateY(-2px); 
+}
+
+/* =========================================
+   SEKCJA HERO (Z GRADIENTOWYM TEKSTEM)
+   ========================================= */
+.hero {
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    padding: 20px;
+    
+    background: linear-gradient(rgba(15, 31, 26, 0.8), rgba(28, 53, 45, 0.7)), 
+                url('Black Modern Barber Shop Business Card.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Gradient na tekście */
+.hero h1 { 
+    font-size: 64px; 
+    margin-bottom: 20px; 
+    font-weight: 700; 
+    background: linear-gradient(45deg, #f3ce87, #dfb76c, #b8860b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.hero p { 
+    font-size: 20px; 
+    color: #e0e0e0; 
+    margin-bottom: 40px; 
+    max-width: 600px; 
+    letter-spacing: 1px;
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.btn-book {
+    display: inline-block; 
+    text-decoration: none; 
+    background: linear-gradient(135deg, #dfb76c, #c09a53); 
+    color: #1c352d; 
+    border: none;
+    padding: 16px 40px; 
+    font-size: 16px; 
+    font-weight: bold;
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+    border-radius: 50px; 
+    transition: all 0.4s ease;
+    animation: fadeInUp 1.4s ease-out forwards, glowPulse 3s infinite;
+}
+
+.btn-book:hover { 
+    transform: scale(1.08) translateY(-3px); 
+    box-shadow: 0 15px 25px rgba(223, 183, 108, 0.4);
+}
+
+/* =========================================
+   OPIS "O NAS" (LUKSUSOWY GRID)
+   ========================================= */
+.about-extended {
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 80px 20px;
+    background-color: #ffffff; 
+}
+
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    gap: 80px; 
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.about-text { flex: 1; }
+.about-text h2 { 
+    font-size: 42px; 
+    color: #1c352d; 
+    margin-bottom: 30px; 
+    position: relative;
+}
+/* Dekoracyjna linia pod tytułem */
+.about-text h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 60px;
+    height: 3px;
+    background-color: #dfb76c;
+}
+
+.about-text p { font-size: 18px; line-height: 1.9; color: #555; }
+
+.about-image { flex: 1; position: relative; }
+/* Efekt podwójnej ramki dla zdjęcia */
+.about-image::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #dfb76c;
+    border-radius: 12px;
+    z-index: 0;
+}
+.about-image img {
+    width: 100%; 
+    max-width: 550px; 
+    border-radius: 12px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); 
+    position: relative;
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+.about-image img:hover { transform: scale(1.03) rotate(1deg); }
+
+/* =========================================
+   CENNIK (EFEKT LEWITUJĄCEJ KARTY)
+   ========================================= */
+.services-section {
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    padding: 80px 20px;
+    background: #f8f9f8;
+}
+
+.services-section h2 { font-size: 42px; margin-bottom: 50px; color: #1c352d; }
+
+.price-list {
+    width: 100%; max-width: 850px; 
+    background: #ffffff; 
+    padding: 60px; 
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05); 
+    border: 1px solid rgba(0,0,0,0.02);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.service-item {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 15px; font-size: 18px; width: 100%;
+    padding: 15px 20px; border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.service-item:hover {
+    background-color: #ffffff; 
+    box-shadow: 0 10px 25px rgba(28, 53, 45, 0.1);
+    transform: translateX(15px) scale(1.01); 
+    border-left: 4px solid #dfb76c; /* Akcent przy najechaniu */
+}
+
+.service-item::after {
+    content: ""; flex-grow: 1; border-bottom: 2px dotted #d1d1d1;
+    margin: 0 20px; position: relative; top: -8px;
+}
+.price { font-weight: 800; color: #dfb76c; order: 2; font-size: 20px;}
+
+/* =========================================
+   KONTAKT (MROCZNA ELEGANCJA)
+   ========================================= */
+.contact-section {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; 
+    background-color: #142721; /* Jeszcze głębsza zieleń */
+    color: white; padding: 80px 40px;
+}
+
+.contact-section h2 { color: #dfb76c; margin-bottom: 60px; font-size: 42px; }
+
+.contact-container {
+    display: flex; justify-content: space-between; align-items: stretch;
+    width: 100%; max-width: 1100px; gap: 80px;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.contact-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.contact-info h3 { color: #dfb76c; margin-bottom: 20px; font-size: 28px; letter-spacing: 1px;}
+.contact-info p { margin-bottom: 12px; color: #b8b8b8; font-size: 17px; }
+
+/* Stylowanie mapy */
+iframe {
+    border-radius: 16px !important;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4) !important;
+    transition: transform 0.3s ease;
+}
+iframe:hover { transform: scale(1.02); }
+
+.contact-form {
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
+    background: rgba(255, 255, 255, 0.03); /* Leciutkie tło formy */
+    backdrop-filter: blur(10px);
+    padding: 40px; border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 16px; margin-bottom: 20px; 
+    border: none; 
+    border-bottom: 2px solid rgba(223, 183, 108, 0.3); 
+    background-color: rgba(0,0,0,0.2); 
+    color: white; font-size: 16px; 
+    border-radius: 8px 8px 0 0; 
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border-bottom: 2px solid #dfb76c;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #dfb76c, #c09a53); 
+    color: #1c352d; border: none;
+    padding: 16px; font-size: 16px; font-weight: bold;
+    cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
+    border-radius: 50px; transition: all 0.4s ease;
+    margin-top: 10px;
+}
+.btn-submit:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 15px 25px rgba(223, 183, 108, 0.4); 
+}
+
+/* 
+   Author: Gracjan Pajor
+   Copyright (c) 2026. All rights reserved.
+*/
