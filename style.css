@@ -1,5 +1,5 @@
 /* =========================================
-   RESET I NOWOCZESNY SCROLLBAR
+   RESET I PODSTAWOWE USTAWIENIA
    ========================================= */
 * {
     margin: 0;
@@ -9,7 +9,7 @@
 
 html {
     scroll-behavior: smooth; 
-    scroll-padding-top: 140px; /* Zwiększono, bo nowe menu jest wyższe */
+    scroll-padding-top: 150px; 
 }
 
 body {
@@ -19,20 +19,43 @@ body {
     overflow-x: hidden; 
 }
 
-/* Wymuszenie koloru telefonu na szary/zgodny z resztą tekstu na Apple */
 a[href^="tel"] {
     color: inherit;
     text-decoration: none;
 }
 
+/* Luksusowy pasek przewijania */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #1c352d; }
 ::-webkit-scrollbar-thumb { background: #dfb76c; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: #f3ce87; }
 
-@keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
+/* =========================================
+   MAGIA PŁYNNYCH ANIMACJI WEJŚCIA (SCROLL)
+   ========================================= */
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeSlideRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Integracja z mechanizmem przewijania przeglądarki */
+.reveal-bottom { animation: fadeSlideUp linear both; animation-timeline: view(); animation-range: entry 10% cover 30%; }
+.reveal-left { animation: fadeSlideLeft linear both; animation-timeline: view(); animation-range: entry 10% cover 30%; }
+.reveal-right { animation: fadeSlideRight linear both; animation-timeline: view(); animation-range: entry 10% cover 30%; }
+
+/* Klasyczny fallback dla starszych urządzeń */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-bottom, .reveal-left, .reveal-right { animation: none; opacity: 1; transform: none; }
 }
 
 @keyframes glowPulse {
@@ -42,15 +65,15 @@ a[href^="tel"] {
 }
 
 /* =========================================
-   NOWY HEADER (Logo na środku + Kafelki)
+   HEADER (Logo na środku + Kafelki)
    ========================================= */
 header {
     display: flex;
-    flex-direction: column; /* Ustawia logo nad menu */
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     padding: 20px;
-    gap: 20px;
+    gap: 15px;
     background: rgba(28, 53, 45, 0.95); 
     backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
@@ -67,56 +90,48 @@ header {
     color: #dfb76c;
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    text-align: center;
 }
 
 nav {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* Pozwala na zawijanie kafli na mniejszych ekranach */
-    gap: 15px; 
+    gap: 12px; 
     width: 100%;
 }
 
 nav a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     font-weight: bold;
-    padding: 12px 25px;
-    
-    /* Styl Kafelków */
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(223, 183, 108, 0.4);
-    border-radius: 8px; /* Kwadratowe rogi dla kafli */
-    transition: all 0.4s ease; 
-    text-align: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(223, 183, 108, 0.3);
+    border-radius: 6px; 
+    transition: all 0.3s ease; 
 }
 
 nav a:hover {
     background-color: #dfb76c; 
     color: #1c352d; 
-    box-shadow: 0 0 15px rgba(223, 183, 108, 0.6); 
+    box-shadow: 0 0 15px rgba(223, 183, 108, 0.5); 
     transform: translateY(-2px); 
 }
 
 /* =========================================
-   SEKCJA HERO 
+   SEKCJA HERO
    ========================================= */
 .hero {
     min-height: 100vh; 
     display: flex;
-    flex-direction: column;
     justify-content: center; 
     align-items: center; 
     text-align: center;
     padding: 40px 20px;
-    background-image: linear-gradient(rgba(15, 31, 26, 0.8), rgba(28, 53, 45, 0.7)), 
-                      url("bg.jpg");
-    background-size: cover;
-    background-position: center center;
+    background: linear-gradient(rgba(15, 31, 26, 0.8), rgba(28, 53, 45, 0.7)), 
+                url("bg.jpg") center center / cover no-repeat;
 }
 
 .hero h1 { 
@@ -124,10 +139,8 @@ nav a:hover {
     margin-bottom: 20px; 
     font-weight: 700; 
     background: linear-gradient(45deg, #f3ce87, #dfb76c, #b8860b);
-    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: fadeInUp 1s ease-out forwards;
 }
 
 .hero p { 
@@ -135,9 +148,7 @@ nav a:hover {
     color: #e0e0e0; 
     margin-bottom: 40px; 
     max-width: 600px; 
-    letter-spacing: 1px;
     line-height: 1.5;
-    animation: fadeInUp 1.2s ease-out forwards;
 }
 
 .btn-book {
@@ -145,27 +156,23 @@ nav a:hover {
     text-decoration: none; 
     background: linear-gradient(135deg, #dfb76c, #c09a53); 
     color: #1c352d; 
-    border: none;
     padding: 16px 40px; 
-    font-size: 16px; 
+    font-size: 15px; 
     font-weight: bold;
     text-transform: uppercase; 
     letter-spacing: 2px;
     border-radius: 50px; 
     transition: all 0.4s ease;
-    animation: fadeInUp 1.4s ease-out forwards, glowPulse 3s infinite;
+    animation: glowPulse 3s infinite;
 }
 
-.btn-book:hover { 
-    transform: scale(1.05) translateY(-3px); 
-    box-shadow: 0 15px 25px rgba(223, 183, 108, 0.4);
-}
+.btn-book:hover { transform: scale(1.05) translateY(-3px); box-shadow: 0 15px 25px rgba(223, 183, 108, 0.4); }
 
 /* =========================================
    OPIS "O NAS"
    ========================================= */
 .about-extended {
-    padding: 100px 20px;
+    padding: 120px 20px;
     background-color: #ffffff; 
 }
 
@@ -175,10 +182,10 @@ nav a:hover {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 50px; 
+    gap: 60px; 
 }
 
-.about-text { flex: 1; }
+.about-text { flex: 1.2; }
 .about-text h2 { 
     font-size: clamp(28px, 4vw, 42px); 
     color: #1c352d; 
@@ -187,50 +194,19 @@ nav a:hover {
     display: inline-block;
 }
 .about-text h2::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    width: 60px;
-    height: 3px;
-    background-color: #dfb76c;
+    content: ''; position: absolute; left: 0; bottom: -10px; width: 60px; height: 3px; background-color: #dfb76c;
 }
 
-.about-text p { 
-    font-size: clamp(16px, 1.8vw, 18px); 
-    line-height: 1.8; 
-    color: #555; 
-}
+.about-text p { font-size: clamp(16px, 1.8vw, 18px); line-height: 1.8; color: #555; }
 
-.about-image { 
-    flex: 1; 
-    position: relative; 
-    display: flex;
-    justify-content: center;
-}
+.about-image { flex: 0.8; position: relative; display: flex; justify-content: center; }
 .about-image::before {
-    content: '';
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    width: 100%;
-    height: 100%;
-    border: 2px solid #dfb76c;
-    border-radius: 12px;
-    z-index: 0;
+    content: ''; position: absolute; top: -15px; left: -15px; width: 100%; height: 100%; border: 2px solid #dfb76c; border-radius: 12px; z-index: 0;
 }
-.about-image img {
-    width: 100%; 
-    max-width: 500px; 
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); 
-    position: relative;
-    z-index: 1;
-}
+.about-image img { width: 100%; max-width: 450px; height: auto; border-radius: 12px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); position: relative; z-index: 1; }
 
 /* =========================================
-   CENNIK
+   CENNIK (Kompaktowa wersja całościowa)
    ========================================= */
 .services-section {
     padding: 100px 20px;
@@ -238,83 +214,109 @@ nav a:hover {
     text-align: center;
 }
 
-.services-section h2 { 
-    font-size: clamp(28px, 4vw, 42px); 
-    margin-bottom: 50px; 
-    color: #1c352d; 
-}
+.services-section h2 { font-size: clamp(28px, 4vw, 42px); margin-bottom: 40px; color: #1c352d; }
 
 .price-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 50px; /* Kompaktowe odstępy */
     width: 100%; 
-    max-width: 850px; 
+    max-width: 1000px; 
     margin: 0 auto;
     background: #ffffff; 
-    padding: clamp(20px, 5vw, 60px); 
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05); 
+    padding: 35px 40px; 
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04); 
     border: 1px solid rgba(0,0,0,0.02);
+}
+
+.price-column {
+    flex: 1 1 45%; /* Tworzy dwie równe, zwarte kolumny */
+    display: flex;
+    flex-direction: column;
 }
 
 .service-item {
     display: flex; 
     justify-content: space-between; 
     align-items: flex-end;
-    margin-bottom: 20px; 
-    font-size: clamp(15px, 1.8vw, 18px); 
-    width: 100%;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 15px; /* Delikatniejsza, mniejsza czcionka */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-.service-item span:first-child { text-align: left; padding-right: 10px; }
-.price { font-weight: 800; color: #dfb76c; font-size: clamp(16px, 2vw, 20px); white-space: nowrap; }
+.service-item span:first-child { text-align: left; padding-right: 10px; color: #444; }
+.price { font-weight: 700; color: #1c352d; font-size: 16px; white-space: nowrap; }
 
 /* =========================================
-   KONTAKT
+   KONTAKT (Mapa kwadratowa po lewej)
    ========================================= */
 .contact-section {
-    padding: 100px 20px;
+    padding: 120px 20px;
     background-color: #142721; 
     color: white; 
     text-align: center;
 }
 
-.contact-section h2 { color: #dfb76c; margin-bottom: 60px; font-size: clamp(28px, 4vw, 42px); }
+.contact-section h2 { color: #dfb76c; margin-bottom: 50px; font-size: clamp(28px, 4vw, 42px); }
 
 .contact-container {
-    display: flex; justify-content: space-between; align-items: stretch;
-    width: 100%; max-width: 1100px; margin: 0 auto; gap: 50px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: stretch;
+    width: 100%; 
+    max-width: 1150px; 
+    margin: 0 auto;
+    gap: 50px;
 }
 
-.contact-info { 
-    flex: 1; display: flex; flex-direction: column; 
-    justify-content: center; text-align: left;
+/* Lewy kontener - Idealny Kwadrat dla Mapy */
+.contact-map-box {
+    flex: 1;
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 1 / 1; /* Wymuszenie idealnego kwadratu */
 }
-.contact-info h3 { color: #dfb76c; margin-bottom: 20px; font-size: 26px; letter-spacing: 1px;}
-.contact-info p { margin-bottom: 12px; color: #b8b8b8; font-size: 16px; line-height: 1.6; }
 
-iframe {
-    border-radius: 16px !important;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.4) !important;
-    margin-top: 20px;
+.contact-map-box iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
 }
+
+/* Prawy kontener - Informacje + Formularz */
+.contact-content-box {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.contact-info { text-align: left; background: rgba(255,255,255,0.02); padding: 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); }
+.contact-info h3 { color: #dfb76c; margin-bottom: 10px; font-size: 24px; }
+.contact-info p { margin-bottom: 8px; color: #cccccc; font-size: 15px; }
 
 .contact-form {
-    flex: 1; display: flex; flex-direction: column; justify-content: center;
+    display: flex; 
+    flex-direction: column; 
     background: rgba(255, 255, 255, 0.03); 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: clamp(20px, 4vw, 40px); 
-    border-radius: 20px;
+    padding: 30px; 
+    border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
 .contact-form input, .contact-form textarea {
-    padding: 16px; margin-bottom: 20px; border: none; 
+    padding: 14px; margin-bottom: 15px; border: none; 
     border-bottom: 2px solid rgba(223, 183, 108, 0.3); 
     background-color: rgba(0,0,0,0.2); color: white; 
-    font-size: 16px; border-radius: 8px 8px 0 0; width: 100%;
+    font-size: 15px; border-radius: 6px 6px 0 0; width: 100%;
+    transition: all 0.3s ease;
 }
 
 .contact-form input:focus, .contact-form textarea:focus {
@@ -323,36 +325,32 @@ iframe {
 
 .btn-submit {
     background: linear-gradient(135deg, #dfb76c, #c09a53); 
-    color: #1c352d; border: none; padding: 16px; 
-    font-size: 16px; font-weight: bold; cursor: pointer; 
-    text-transform: uppercase; letter-spacing: 2px; border-radius: 50px; 
-    margin-top: 10px;
+    color: #1c352d; border: none; padding: 14px; 
+    font-size: 15px; font-weight: bold; cursor: pointer; 
+    text-transform: uppercase; letter-spacing: 1px; border-radius: 50px; 
 }
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(223, 183, 108, 0.3); }
 
 /* =========================================
-   RWD – OPTYMALIZACJA TABLET / SMARTFON
+   RWD (RESPONSYWNOŚĆ MOBILNA)
    ========================================= */
-
 @media (max-width: 992px) {
-    /* Wyśrodkowanie opisów na tablecie i telefonie */
-    .about-text { text-align: center; }
-    .about-text h2::after { 
-        left: 50%; 
-        transform: translateX(-50%); /* Wyśrodkowanie złotej linii pod nagłówkiem */
-    }
+    header { padding: 15px; }
+    .about-container { flex-direction: column; text-align: center; gap: 40px; }
+    .about-text h2::after { left: 50%; transform: translateX(-50%); }
+    .price-list { padding: 25px; }
+    .price-column { flex: 1 1 100%; }
+    .contact-container { flex-direction: column; align-items: center; gap: 40px; }
+    .contact-map-box { max-width: 100%; }
     .contact-info { text-align: center; }
-    
-    .about-container { flex-direction: column; gap: 40px; }
-    .contact-container { flex-direction: column; gap: 40px; }
     .about-image::before { display: none; }
 }
 
 @media (max-width: 600px) {
-    nav a { 
-        font-size: 11px; 
-        padding: 10px 15px; 
-        flex: 1 1 40%; /* Kafelki zajmują po 40% szerokości, robiąc ładną siatkę */
-    }
-    .service-item { flex-direction: column; align-items: flex-start; gap: 5px; }
+    nav { flex-wrap: wrap; }
+    nav a { font-size: 11px; padding: 8px 12px; flex: 1 1 40%; }
+    .service-item { flex-direction: column; align-items: flex-start; gap: 4px; }
     .price { align-self: flex-end; }
 }
+
+/* Author: Gracjan Pajor | Copyright (c) 2026 */
